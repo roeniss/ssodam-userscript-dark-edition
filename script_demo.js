@@ -13,10 +13,10 @@ $("body").css("background_color", light_black)
 */
 
 // 요소 리스트 (순서대로 설명)
-// 전체 배경
+// 전체
 let background_color_black_elems = ["body",];
-// 푸터 배경, 메인화면 각 게시판 미리보기 배경, 헤더 배경
-let background_color_light_black_elems = ["footer > .container", "div.image > .image-view", "div.panel-group > div.panel"];
+// 푸터 바깥쪽 여백, 푸터, 메인화면 각 게시판 미리보기, 헤더, 중앙 하단 검색바
+let background_color_light_black_elems = ["footer", "footer > .container", "div.image > .image-view", "div.panel-group > div.panel", "form.searchbar input"];
 // 상단 적색 바 배경
 let background_color_darker_elems = ["div.alert.alert-default"];
 // 메인화면 각 게시판 글 제목들
