@@ -7,7 +7,7 @@
 // @source       https://github.com/roeniss/ssodam-userscript-dark-edition
 // @iconURL      http://www.ssodam.com/statics/img/favicon.png
 // @match        http://*.ssodam.com/*
-// @run-at       document-idle
+// @run-at       document-start
 
 // ==/UserScript==
 (function() {
@@ -29,7 +29,8 @@
     body, footer {
       background-color: var(--black-bg-1) !important;
     }
-    div.image-view, input.form-control, .list-group-item, .mbbanner, .searchbar button, .desktop-hide {
+    div.image-view, input.form-control, .list-group-item, .mbbanner, .searchbar button,
+    body > main > div.col-lg-offset-1.col-lg-10 > div:nth-child(2) {
       background-color: var(--black-bg-2) !important;
     }
     div.panel, ul.dropdown-menu .desktop-hide, ul.dropdown-menu {
@@ -50,13 +51,116 @@
     .panel-default {
       border:none !important;
     }
-    
-    
 
+    /*
+    *  detail page
+     */
+    .post-element, .referer{
+      background-color: var(--black-bg-2) !important;
+    }
+    .post-element *{
+      color: var(--white-fg-1) !important;
+    }
+    .sidebar-menu *, .referer{
+      color: var(--white-fg-2) !important;
+    }
+
+    div.board-header > div:nth-of-type(4),
+    div.board-remove > div:nth-of-type(2),
+    div.comment-header > div:nth-of-type(3) {
+      opacity: .01 !important;
+    }
+
+    .post-element hr {
+      border-color: var(--white-fg-3) !important;
+    }
+
+    .board-comments textarea {
+      background-color: var(--black-bg-3) !important;
+    }
+
+    body > main > div.col-lg-offset-1.col-lg-10 > div.col-lg-3.visible-lg.side-view{
+      background-color: var(--black-bg-1) !important;
+    }
+
+    .board-comments div div .desktop-hide * {
+      background-color: var(--black-bg-1) !important;
+      border-color: var(--black-bg-1) !important;
+    }
+
+    .desktop-hide button, .desktop-hide button * {
+      opacity: 1 !important;
+      background-color: var(--black-bg-2) !important;
+      color: var(--white-fg-2) !important;
+    }
+    
+    .form-control:focus {
+      border-color: var(--red-1) !important;
+      -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px var(--red-1);
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px var(--red-1);
+    }
+
+    /*
+     * board page
+     */
+
+    body > main > div > div > div.post-element > div.table-responsive > table * {
+      border-color: var(--white-fg-3) !important;
+    }
+    
+    .label-info {
+      background-color: var(--red-1) !important;
+    }
+    
+    div.post-element.table-post * {
+      color: var(--white-fg-1) !important;
+    }
+    
+    .btn-default{
+      background-color: var(--black-bg-2) !important;
+    }
+
+    .searchbar select {
+      background-color: var(--black-bg-3) !important;
+      color: var(--white-fg-2) !important;
+    }
+
+    body > main > div.col-lg-offset-1.col-lg-10 > div.col-lg-3.mobile-hide.side-view{
+      background-color: var(--black-bg-1) !important;
+    }
+
+    /*
+     * board page
+     */
+    #youtube_modal > div.modal-dialog.modal-sm > div *{
+      background-color: var(--black-bg-2) !important;
+    }
 
   `;
+
+  // add custom styles
   const styleElem = document.createElement("style");
   styleElem.type = "text/css";
   styleElem.appendChild(document.createTextNode(styles));
   document.head.appendChild(styleElem);
+
+  // remove hover color on board pages when ready
+  // I chose to inject this codes at "document-start" for prevention of splash
+  // At this time documents are not fully loaded. So I use setInterval().
+  const removeHoverEffects = setInterval(function() {
+    if (!!document && document.readyState != "loading") {
+      const elems_tr = document.querySelectorAll("table tr");
+      elems_tr.forEach(elem => {
+        elem.removeAttribute("onmouseover");
+        elem.removeAttribute("onmouseout");
+        elem.onmouseover = function() {
+          this.style.background = "var(--black-bg-3)";
+        };
+        elem.onmouseout = function() {
+          this.style.background = "var(--black-bg-2)";
+        };
+      });
+      clearInterval(removeHoverEffects);
+    }
+  }, 50);
 })();
