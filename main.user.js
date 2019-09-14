@@ -2,11 +2,10 @@
 // @name         ssodam-custom-script-dark-edition
 // @description  Change colors of and add functions to "http://ssodam.com"
 // @author       Roeniss Moon
-// @version      1.1
+// @version      1.2
 // @license      MIT
 // @namespace    http://tampermonkey.net/roeniss/
 // @source       https://github.com/roeniss/ssodam-userscript-dark-edition
-// @iconURL      http://www.ssodam.com/statics/img/favicon.png
 // @match        http://*.ssodam.com/*
 // @run-at       document-start
 
@@ -188,4 +187,29 @@
       clearInterval(removeHoverEffects);
     }
   }, 50);
+
+  // add scripts for shortkeys
+
+  const myScripts = `
+  var key = new Array();
+  key["2"] = "/board/5/1"; // 익게2
+  key["1"] = "/board/4/1"; // 익게1
+  key["t"] = "/today/1"; // 인기글
+  key["n"] = "/write/?board_no=5"; // 익게2 글쓰기
+  key["m"] = "/me"; // mypage
+
+  function getKey(keyStroke) {
+    if (event.srcElement.tagName != "INPUT" && event.srcElement.tagName != "TEXTAREA") {
+      isNetscape = document.layers;
+      eventChooser = isNetscape ? keyStroke.which : event.keyCode;
+      which = String.fromCharCode(eventChooser).toLowerCase();
+      for (var i in key) if (which == i) window.location = key[i];
+    }
+  }
+  document.onkeypress = getKey;
+  `;
+
+  const script = document.createElement("script");
+  script.textContent = myScripts;
+  (document.head || document.documentElement).appendChild(script);
 })();
