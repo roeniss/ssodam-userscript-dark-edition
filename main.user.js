@@ -7,6 +7,7 @@
 // @source       https://github.com/roeniss/ssodam-userscript-dark-edition
 // @iconURL      http://www.ssodam.com/statics/img/favicon.png
 // @match        http://*.ssodam.com/*
+// @license MIT
 // @run-at       document-start
 
 // ==/UserScript==
