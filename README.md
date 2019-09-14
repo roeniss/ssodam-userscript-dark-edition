@@ -7,8 +7,8 @@ PR, issue 환영합니다.
 ## Todo
 
 - [x] css 수정이 필요한 페이지 취합
-- [ ] 다크모드 적용
-- [ ] Tampermonkey에 업로드
+- [x] 다크모드 적용
+- [x] Tampermonkey에 업로드
 - [ ] 사용 방법 문서 작성
 
 ### css 수정이 필요한 페이지 취합
