@@ -117,7 +117,12 @@
     }
     
     .btn-default{
+      color: var(--white-fg-1) !important;
       background-color: var(--black-bg-2) !important;
+    }
+    
+    .form-control{
+      color: var(--white-fg-1) !important;
     }
 
     .searchbar select {
@@ -129,10 +134,18 @@
       background-color: var(--black-bg-1) !important;
     }
 
+    .desktop-hide center{
+      background-color: var(--black-bg-2) !important;
+    }
+    
+    body > div.desktop-hide > div.desktop-hide.fadeyo{
+      border: none !important;
+    }
+
     /*
-     * board page
+     * write page
      */
-    #youtube_modal > div.modal-dialog.modal-sm > div *{
+    #youtube_modal > div.modal-dialog.modal-sm > div *, .btn-toolbar{
       background-color: var(--black-bg-2) !important;
     }
 
@@ -144,11 +157,11 @@
   styleElem.appendChild(document.createTextNode(styles));
   document.head.appendChild(styleElem);
 
-  // remove hover color on board pages when ready
   // I chose to inject this codes at "document-start" for prevention of splash
   // At this time documents are not fully loaded. So I use setInterval().
   const removeHoverEffects = setInterval(function() {
     if (!!document && document.readyState != "loading") {
+      // remove hover color on board pages when ready
       const elems_tr = document.querySelectorAll("table tr");
       elems_tr.forEach(elem => {
         elem.removeAttribute("onmouseover");
@@ -160,6 +173,16 @@
           this.style.background = "var(--black-bg-2)";
         };
       });
+
+      // remove unnecessary css in mypage
+      const mypageElem = document.querySelector("body > main > div > div.col-lg-4");
+      if (!!mypageElem) {
+        const mypageElemCheck = mypageElem.querySelector(".useredit");
+        if (!!mypageElemCheck) {
+          mypageElem.style = "background-color: var(--black-bg-1) !important";
+        }
+      }
+
       clearInterval(removeHoverEffects);
     }
   }, 50);
