@@ -1,16 +1,17 @@
 // ==UserScript==
 // @name         ssodam-custom-script-dark-edition
-// @namespace    http://tampermonkey.net/roeniss/
-// @version      1.1
 // @description  Change colors of and add functions to "http://ssodam.com"
 // @author       Roeniss Moon
+// @version      1.1
+// @license      MIT
+// @namespace    http://tampermonkey.net/roeniss/
 // @source       https://github.com/roeniss/ssodam-userscript-dark-edition
 // @iconURL      http://www.ssodam.com/statics/img/favicon.png
 // @match        http://*.ssodam.com/*
-// @license MIT
 // @run-at       document-start
 
 // ==/UserScript==
+
 (function() {
   "use strict";
   const styles = `
