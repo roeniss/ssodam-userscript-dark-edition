@@ -190,7 +190,6 @@
 
   // add scripts for shortkeys
 
-  const myScripts = `
   var key = new Array();
   key["2"] = "/board/5/1"; // 익게2
   key["1"] = "/board/4/1"; // 익게1
@@ -200,16 +199,11 @@
 
   function getKey(keyStroke) {
     if (event.srcElement.tagName != "INPUT" && event.srcElement.tagName != "TEXTAREA") {
-      isNetscape = document.layers;
-      eventChooser = isNetscape ? keyStroke.which : event.keyCode;
-      which = String.fromCharCode(eventChooser).toLowerCase();
+      let isNetscape = document.layers;
+      let eventChooser = isNetscape ? keyStroke.which : event.keyCode;
+      let which = String.fromCharCode(eventChooser).toLowerCase();
       for (var i in key) if (which == i) window.location = key[i];
     }
   }
   document.onkeypress = getKey;
-  `;
-
-  const script = document.createElement("script");
-  script.textContent = myScripts;
-  (document.head || document.documentElement).appendChild(script);
 })();
