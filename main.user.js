@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ssodam-custom-script-dark-edition
 // @namespace    http://tampermonkey.net/roeniss/
-// @version      0.1
+// @version      1.0
 // @description  Change colors of and add functions to "http://ssodam.com"
 // @author       Roeniss Moon
 // @source       https://github.com/roeniss/ssodam-userscript-dark-edition
