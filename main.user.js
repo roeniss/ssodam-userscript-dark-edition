@@ -22,6 +22,7 @@
       --white-fg-2: #9C9C9C;
       --white-fg-3: #888888;
       --red-1: #e66060;
+      --green-1: #77932e;
     }
 
     /*
@@ -141,6 +142,14 @@
     
     body > div.desktop-hide > div.desktop-hide.fadeyo{
       border: none !important;
+    }
+
+    div.comment-user-me {
+      color: var(--green-1) !important;
+    }
+    
+    div.comment-user-writer{
+      color: var(--red-1) !important;
     }
 
     /*
